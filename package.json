@@ -1,0 +1,12 @@
+{
+  "name": "gpts-files",
+  "version": "0.0.1",
+  "description": "CLI tool for managing files for OpenAI GPTs",
+  "bin": {
+    "gpt-files": "./bin/gpts-files"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ]
+}
