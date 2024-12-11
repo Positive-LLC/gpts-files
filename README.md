@@ -33,7 +33,7 @@ This will generate the binaries in the `dist` directory for the following platfo
 ## Commands
 To see the available commands and options, run:
 ```sh
-gpt-files --help
+gpts-files --help
 ```
 
 ## Configuration

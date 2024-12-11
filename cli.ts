@@ -39,11 +39,14 @@ class GPTFilesClient {
     return response.json();
   }
 
-  async uploadFile(filePath: string, assistantId: string) {
+  async uploadFile(filePath: string, assistantId: string, newFileName?: string) {
     const formData = new FormData();
     const file = await Deno.readFile(filePath);
+    const originalFilename = filePath.split("/").pop();
+    const uploadFilename = newFileName || originalFilename;
+
     formData.append("purpose", "assistants");
-    formData.append("file", new Blob([file]), filePath.split("/").pop());
+    formData.append("file", new Blob([file]), uploadFilename);
 
     const fileResponse = await this.request("/files", {
       method: "POST",
@@ -91,13 +94,15 @@ await new Command()
   .env("OPENAI_API_KEY=<value:string>", "OpenAI API key")
   .env("OPENAI_GPTS_ID=<value:string>", "OpenAI GPTs ID")
   .command("upload", "Upload a file to a GPTs")
+  .option("-n, --new-name <name:string>", "New filename for the upload (optional)")
   .arguments("<file:string>")
-  .action(async (_, filePath) => {
+  .action(async (options, filePath) => {
     try {
       const client = new GPTFilesClient(Deno.env.get("OPENAI_API_KEY")!);
       const response = await client.uploadFile(
         filePath,
-        Deno.env.get("OPENAI_GPTS_ID")!
+        Deno.env.get("OPENAI_GPTS_ID")!,
+        options.newName,
       );
       console.log(colors.green("✓"), "File uploaded successfully:", response.id);
     } catch (error: unknown) {

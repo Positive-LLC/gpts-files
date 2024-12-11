@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: '20'
           cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+          scope: "@positivegrid"
+          always-auth: 'true'
 
       - name: Setup Deno
         uses: denoland/setup-deno@v2
@@ -44,5 +47,4 @@ jobs:
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --access restricted
