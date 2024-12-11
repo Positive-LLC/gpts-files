@@ -9,9 +9,5 @@
   "files": [
     "bin",
     "dist"
-  ],
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://registry.npmjs.org/"
-  }
+  ]
 }

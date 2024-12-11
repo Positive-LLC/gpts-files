@@ -9,6 +9,9 @@ permissions:
   contents: write
   packages: write
 
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -19,15 +22,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: "https://registry.npmjs.org"
 
       - name: NPM Authentication
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          npm whoami
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+        run: npm whoami
 
       - name: Setup Deno
         uses: denoland/setup-deno@v2
@@ -55,5 +52,3 @@ jobs:
           echo "Registry: $(npm config get registry)"
           echo "Auth Token Exists: $(test -n "$NPM_TOKEN" && echo "Yes" || echo "No")"
           npm publish --access restricted
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

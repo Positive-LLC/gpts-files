@@ -44,11 +44,3 @@ This file contains the configuration for Deno tasks, formatting options, compile
 ### `package.json`
 This file contains the npm configuration for the project, including the binary entry point and files to include.
 
-### `.gitignore`
-This file specifies the files and directories to be ignored by git, such as `.idea` and `dist`.
-
-## License
-This project is licensed under the MIT License.
-```
-
-This `README.md` provides an overview of the project, installation instructions, usage examples, and information about the configuration files.
