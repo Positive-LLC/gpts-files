@@ -1,7 +1,7 @@
 {
   "name": "@positivegrid/gpts-files",
   "private": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "CLI tool for managing files for OpenAI GPTs",
   "bin": {
     "gpts-files": "./bin/gpts-files"
